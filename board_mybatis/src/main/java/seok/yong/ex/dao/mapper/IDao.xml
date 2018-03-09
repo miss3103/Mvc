@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="seok.yong.ex.dao.IDao">
+    	<select id="listDao" resultType="seok.yong.ex.dto.ContentDto">
+    		select * from mvc_board order by bid DESC
+    	</select>
+    	
+    	<select id="loginch" resultType="seok.yong.ex.dto.LoginDto">
+    		select * from member where id=#{param1} and pw=#{param2}
+    	</select>
+    	
+    	<insert id="writeDao">
+    		insert into mvc_board (bId,bName,bTitle,bContent,bData,bGroup,bStep,bIndent)
+    		values(mvc_board_seq.nextval,#{param1},#{param2},#{param2},SYSDATE,mvc_board_seq.currval,0,0) 
+    	</insert>
+    	
+    	<delete id="deleteDao">
+    		delete from mvc_board where bid= #{param1}
+    	</delete>
+    	
+    	<insert id="joinDao">
+    		insert into member (id,PW,name)
+    		values(#{param1},#{param2},#{param2}) 
+    	</insert>
+    </mapper>
